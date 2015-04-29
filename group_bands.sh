@@ -21,7 +21,7 @@ fi
 ###	TO-DO: User specified band directory (currently the present working directory)	 ###
 ###	TO-DO: Find final band automatically	 					 ###
 
-FINAL_BAND=2560;
+FINAL_BAND=0x9ff;
 
 ########		END INITIALIZATION		 ########
 					
