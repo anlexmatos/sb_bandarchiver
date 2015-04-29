@@ -79,7 +79,7 @@ echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";
 
 suffix=1;
 for queue in $WORKSPACE/queues/*; do
-	echo "… Creating archive #$suffix …";			# File names: archive_[1…2…3…]
+	echo "… Creating archive_$suffix …";			# File names: archive_[1…2…3…]
 	tar -cvf ../../archive_$suffix  --files-from=$queue;	# Placed outside sparse bundle
 	let "suffix += 1"
 done
