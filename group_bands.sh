@@ -7,7 +7,7 @@
 WORKSPACE=$(echo ~/.sb_bandarchiver)				# Set workspace directory.
 ARCHIVE_SIZE=10							# Archive size in GiB.
 files_per_archive=$(expr $(expr $ARCHIVE_SIZE \* 1024) / 8)	# Rough calculation assumes all
-								# files are 8MB; a handful aren't.
+								# files are 8MiB; a handful aren't.
 
 ####	Initialize Workspace	####
 
