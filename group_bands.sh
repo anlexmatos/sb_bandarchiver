@@ -50,7 +50,7 @@ for ((i=0; i<=$FINAL_BAND; i+=1)); do		    # Counting up to (name of last band, 
 						    # Essentially: Decimal Integer -> Hex String.
 						    # This is necessary because bash always stores
 						    # and operates on numbers in decimal, even when 
-						    # they are originally specified in hexadecimal,
+						    # they are originally specified in hexadecimal.
 
 	if [ -e $k ]				    # Check if the hex in k corresponds to a band.
 	then
