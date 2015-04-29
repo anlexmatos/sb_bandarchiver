@@ -2,13 +2,14 @@
 
 ########		BEGIN INITIALIZATION		   ########
 						
-####	Initialize variables	####
+####	Initialize Variables	####
 				
-WORKSPACE=$(echo ~/.sb_bandarchiver)				# Set workspace directory
-ARCHIVE_SIZE=10							# Archive size in GiB
-files_per_archive=$(expr $(expr $ARCHIVE_SIZE \* 1024) / 8)	# Calculate archive filecount
+WORKSPACE=$(echo ~/.sb_bandarchiver)				# Set workspace directory.
+ARCHIVE_SIZE=10							# Archive size in GiB.
+files_per_archive=$(expr $(expr $ARCHIVE_SIZE \* 1024) / 8)	# Rough calculation assumes all
+								# files are 8MB; a handful aren't.
 
-####	Initialize workspace	####
+####	Initialize Workspace	####
 
 if [ -e $WORKSPACE ]						
    then rm $WORKSPACE/counted; rm $WORKSPACE/queues/*; fi	# Wipe workspace dir if it exists
@@ -28,7 +29,7 @@ FINAL_BAND=0x9ff;
 
 
 
-####	Create list of all existent bands, in hexadecimal order    ####
+####	List of All Bands in Hexadecimal Order    ####
 
 found_count=0;
 for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Counting up to (name of last band), a hex number
@@ -50,25 +51,21 @@ echo "$found_count bands found in total.";
 
 
 
-####	Split the list into lists with $files_per_archive lines each 	####
-####	These will serve as "archive queues"	 			####
-####	Files are named queue[aaa…zzz]					####
+####	Split List into Lists, with $files_per_archive Lines Each 	####
 
-echo "… Creating archive queues …";
-split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue;
-echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";
+echo "… Creating archive queues …";						# File names:
+split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue;	#   queue[aaa…zzz]
+echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";			# in workspace dir
 
 
 
-####	Pass each queue to tar for archiving	####
-####	Archives are named "archive[1…2…3]"	####
-####	Archives are placed outside disk image	####
+####	Pass Queues to Tar for Archiving	####
 ##	TO-DO: user provided output directory	  ##
 ##	TO-DO: halt if "queue-only mode"	  ##
 
 suffix=1;
 for queue in $WORKSPACE/queues/*; do
-	echo "… Creating archive #$suffix …";
-	tar -cvf ../../archive$suffix  --files-from=$queue;
+	echo "… Creating archive #$suffix …";			# File names: archive[1…2…3…]
+	tar -cvf ../../archive$suffix  --files-from=$queue;	# Placed outside sparse bundle
 	let "suffix += 1"
 done
