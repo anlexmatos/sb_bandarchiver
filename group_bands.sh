@@ -65,6 +65,10 @@ echo "$found_count bands found in total."
 
 #### 	  2. Split List Into Queues with $files_per_archive Lines (Files)  Each	     ####
 
+##	TO-DO: Check arguments for "queue-only mode". If so:	     ##
+##	       - Copy queue files to user-specified directory.	     ##
+##	       - Halt script, do not run go on to step 3 (tar).	     ##
+
 echo "… Creating archive queues …"						# Files in workspace:
 split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue_	#     queue_[aaa…zzz]
 echo "$(ls $WORKSPACE/queues | wc -l) queue files created."			
@@ -73,11 +77,8 @@ echo "$(ls $WORKSPACE/queues | wc -l) queue files created."
 
 ####	  3. Pass Queues to Tar for Archiving	   ####
 
-##	TO-DO: Check arguments for "queue-only mode". If so:	   			      ##
-##	       - Copy queue files to user-specified directory	   			      ##
-##	       - Halt script, do not run tar			   			      ##
-##	TO-DO: !! Allow user-specified archive location.				      ##
-##		  - Important; image's parent drive might have insufficient free space	      ##
+##	TO-DO: !! Allow user-specified archive location.				   ##
+##	       - Important; image's parent drive might have insufficient free space	   ##
 
 suffix=1
 for queue in $WORKSPACE/queues/*; do
