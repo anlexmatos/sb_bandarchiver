@@ -9,6 +9,7 @@
 # drag-and-drop uploading of cacheable segments feasible. The archives are placed in the grandparent
 # directory (i.e. outside of the sparse bundle).
 
+
 											
 ####	  0a. Initialize Variables	####    
 
@@ -32,10 +33,10 @@ FINAL_BAND=0x9ff;	# Though this value is specified here in hex (e.g. filename 9f
 ####	  0b. Initialize Workspace	####
 
 if [ -e $WORKSPACE ]						
-   then rm $WORKSPACE/counted; rm $WORKSPACE/queues/*; fi	   # Wipe workspace dir if it exists
+   then rm $WORKSPACE/counted; rm $WORKSPACE/queues/*; fi	   # Wipe workspace dir if it exists.
 
 if [ ! -e $WORKSPACE ]						
-   then	mkdir $WORKSPACE; mkdir $WORKSPACE/queues;		   # Otherwise, create it
+   then	mkdir $WORKSPACE; mkdir $WORKSPACE/queues;		   # Otherwise, create it.
 	echo 'Created workspace at ~/.sb_bandarchiver/'; fi
 
 
@@ -46,14 +47,14 @@ found_count=0;
 for ((i=0; i<=$FINAL_BAND; i+=1)); do		    # Counting up to (name of last band, as a decimal)
 
 	k=$(printf "%x\n" $i);			    # "Print i into k" in hexadecimal form.
-						    # Essentially: Decimal Integer -> Hex String
+						    # Essentially: Decimal Integer -> Hex String.
 						    # This is necessary because bash always stores
 						    # and operates on numbers in decimal, even when 
 						    # they are originally specified in hexadecimal,
 
-	if [ -e $k ]				    # Check if the hex in k corresponds to a band
+	if [ -e $k ]				    # Check if the hex in k corresponds to a band.
 	then
-		echo $k >> $WORKSPACE/counted;	    # If so, add to the file list: 'counted'
+		echo $k >> $WORKSPACE/counted;	    # If so, add to the file list: 'counted'.
 		let "found_count += 1";		    # "That's One, One Band, Ah Ah Ah…!"	
 	fi
 done
@@ -81,6 +82,6 @@ echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";
 suffix=1;
 for queue in $WORKSPACE/queues/*; do
 	echo "… Creating archive_$suffix …";			    # File names: archive_[1…2…3…]
-	tar -cvf ../../archive_$suffix  --files-from=$queue;	    # Placed outside sparse bundle
+	tar -cvf ../../archive_$suffix  --files-from=$queue;	    # placed outside sparse bundle.
 	let "suffix += 1"
 done
