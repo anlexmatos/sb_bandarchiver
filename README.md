@@ -7,8 +7,8 @@ Currently all options are hardcoded and no command line arguments are read.
 
 To use:  
 First edit $ARCHIVE_SIZE to match your preference. Value must be in GiB.  
-Edit $FINAL_BAND to match the last band in yoru sparse bundle (in hexadecimal order, NOT the sort order shown by the Finder, or the other sort order shown by ls…)  
-Change your working directory to the "band" folder inside a .sparsebundle package.  
+Edit $FINAL_BAND to match the last band in the sparse bundle (in hexadecimal order, NOT the sort order shown by the Finder, or the other sort order shown by ls…)  
+Change your working directory to the "band" directory inside the .sparsebundle package.  
 Then run the group_bands shell script. Archives will be placed outside the sparse bundle.
 
 Ex:  
