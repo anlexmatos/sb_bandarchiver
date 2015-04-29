@@ -55,8 +55,8 @@ for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Counting up to (name of last band, as a
 
 	if [ -e $k ]				# Check if the hex in k corresponds to a band
 	then
-		echo $k >> $WORKSPACE/counted	# If so, add to the file list: 'counted'
-		let "found_count += 1";
+		echo $k >> $WORKSPACE/counted;	# If so, add to the file list: 'counted'
+		let "found_count += 1";		# "That's One, One Band, Ah Ah Ah…!"	
 	fi
 done
 
