@@ -7,8 +7,8 @@
 WORKSPACE=$(echo ~/.sb_bandarchiver)				# Set workspace directory.
 ARCHIVE_SIZE=10							# Archive size in GiB.
 files_per_archive=$(expr $(expr $ARCHIVE_SIZE \* 1024) / 8)	# Rough calculation assumes all
-
 								# files are 8MB; a handful aren't.
+
 ####	Initialize Workspace	####
 
 if [ -e $WORKSPACE ]						
@@ -22,7 +22,8 @@ if [ ! -e $WORKSPACE ]
 ###	TO-DO: User specified band directory (currently PWD)	 ###
 ###	TO-DO: Find final band automatically	 		 ###
 
-FINAL_BAND=0x9ff;
+FINAL_BAND=0x9ff;	# Though this value is provided in hex (corresponding to file 9ff)
+			# bash will convert this to decimal (2560) before storing.
 
 
 ########	END INITIALIZATION	  ########
@@ -33,13 +34,13 @@ FINAL_BAND=0x9ff;
 ####	List All Bands in Hexadecimal Order    ####
 
 found_count=0;
-for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Counting up to (name of last band), a hex number
+for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Counting up to (name of last band, as a decimal)
 
 	k=$(printf "%x\n" $i);			# "Print i into k" in hexadecimal form.
 						# Essentially: Decimal Integer -> Hex String
 						# This is necessary because bash always stores
 						# and operates on numbers in decimal, even when 
-						# they are specified in hexadecimal,
+						# they are originally specified in hexadecimal,
 
 	if [ -e $k ]				# Check if the hex in k corresponds to a band
 	then
