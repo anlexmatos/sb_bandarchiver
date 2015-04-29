@@ -56,7 +56,7 @@ echo "$found_count bands found in total.";
 ####	 2. Split List into Lists, with $files_per_archive Lines Each	  ####
          							          
 echo "… Creating archive queues …";						# Files in workspace:
-split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue;	#      queue[aaa…zzz]
+split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue_;	#     queue_[aaa…zzz]
 echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";			
 
 
@@ -68,7 +68,7 @@ echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";
 
 suffix=1;
 for queue in $WORKSPACE/queues/*; do
-	echo "… Creating archive #$suffix …";			# File names: archive[1…2…3…]
-	tar -cvf ../../archive$suffix  --files-from=$queue;	# Placed outside sparse bundle
+	echo "… Creating archive #$suffix …";			# File names: archive_[1…2…3…]
+	tar -cvf ../../archive_$suffix  --files-from=$queue;	# Placed outside sparse bundle
 	let "suffix += 1"
 done
