@@ -1,14 +1,14 @@
 #!/bin/bash
 
-########		BEGIN INITIALIZATION		   ########
-						
-####	Initialize Variables	####
-				
+########	BEGIN INITIALIZATION       ########
+											
+####	Initialize Variables	####    
+
 WORKSPACE=$(echo ~/.sb_bandarchiver)				# Set workspace directory.
 ARCHIVE_SIZE=10							# Archive size in GiB.
 files_per_archive=$(expr $(expr $ARCHIVE_SIZE \* 1024) / 8)	# Rough calculation assumes all
-								# files are 8MB; a handful aren't.
 
+								# files are 8MB; a handful aren't.
 ####	Initialize Workspace	####
 
 if [ -e $WORKSPACE ]						
@@ -16,20 +16,21 @@ if [ -e $WORKSPACE ]
 
 if [ ! -e $WORKSPACE ]						
    then	mkdir $WORKSPACE; mkdir $WORKSPACE/queues;		# Otherwise, create it
-	echo 'Created workspace at ~/.sb_bandarchiver/';
-fi 
+	echo 'Created workspace at ~/.sb_bandarchiver/'; fi 
 
-###	TO-DO: User specified band directory (currently the present working directory)	 ###
-###	TO-DO: Find final band automatically	 					 ###
+
+###	TO-DO: User specified band directory (currently PWD)	 ###
+###	TO-DO: Find final band automatically	 		 ###
 
 FINAL_BAND=0x9ff;
 
-########		END INITIALIZATION		 ########
-					
+
+########	END INITIALIZATION	  ########
+			
 
 
 
-####	List of All Bands in Hexadecimal Order    ####
+####	List All Bands in Hexadecimal Order    ####
 
 found_count=0;
 for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Counting up to (name of last band), a hex number
