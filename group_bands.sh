@@ -31,7 +31,7 @@ FINAL_BAND=0x9ff;	# Though this value is provided in hex (corresponding to file 
 
 
 
-####	List All Bands in Hexadecimal Order    ####
+####	1. List All Bands in Hexadecimal Order    ####
 
 found_count=0;
 for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Counting up to (name of last band, as a decimal)
@@ -53,16 +53,17 @@ echo "$found_count bands found in total.";
 
 
 
-####	Split List into Lists, with $files_per_archive Lines Each 	####
-
+####	 2. Split List into Lists, with $files_per_archive Lines Each	  ####
+         							          
 echo "… Creating archive queues …";						# File names:
 split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue;	#   queue[aaa…zzz]
 echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";			# in workspace dir
 
 
 
-####	Pass Queues to Tar for Archiving	####
-##	TO-DO: user provided output directory	  ##
+####	3. Pass Queues to Tar for Archiving	####
+        				        
+##	TO-DO: user provided output directory     ##
 ##	TO-DO: halt if "queue-only mode"	  ##
 
 suffix=1;
