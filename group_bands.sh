@@ -13,10 +13,20 @@
 											
 ####	Initialize Variables	####    
 
+###	  TO-DO: Read arguments for user's specified: 		###
+###	 	     Band directory (currently PWD)		###
+###	 	     Archive size				###
+###		     Final band (optional)			###
+###	  TO-DO: Find final band automatically (optional)	###		 
+          					   	        	        	
 WORKSPACE=$(echo ~/.sb_bandarchiver)				# Set workspace directory.
+
 ARCHIVE_SIZE=10							# Archive size in GiB.
 files_per_archive=$(expr $(expr $ARCHIVE_SIZE \* 1024) / 8)	# Rough calculation assumes all
 								# files are 8MiB; a handful aren't.
+
+FINAL_BAND=0x9ff;	# Though this value is specified here in hex (e.g. filename 9ff as "0x9ff"),
+			# bash will convert this to decimal (e.g. 2560) before storing.
 
 ####	Initialize Workspace	####
 
@@ -26,14 +36,6 @@ if [ -e $WORKSPACE ]
 if [ ! -e $WORKSPACE ]						
    then	mkdir $WORKSPACE; mkdir $WORKSPACE/queues;		# Otherwise, create it
 	echo 'Created workspace at ~/.sb_bandarchiver/'; fi 
-
-
-###	TO-DO: User specified band directory (currently PWD)	 ###
-###	TO-DO: Find final band automatically	 		 ###
-
-FINAL_BAND=0x9ff;	# Though this value is provided in hex (e.g. corresponding to file '9ff'),
-			# bash will convert this to decimal (e.g. 2560) before storing.
-
 
 ########	END INITIALIZATION	  ########
 			
