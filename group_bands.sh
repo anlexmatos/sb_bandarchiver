@@ -25,7 +25,7 @@ ARCHIVE_SIZE=10							  # Archive size in GiB.
 files_per_archive=$(expr $(expr $ARCHIVE_SIZE \* 1024) / 8)	  # Rough calculation assumes all
 							  	  # files are 8MiB; a handful aren't.
 
-FINAL_BAND=0x9ff;	# Though this value is specified here in hex (e.g. filename 9ff as "0x9ff"),
+FINAL_BAND=0x9ff	# Though this value is specified here in hex (e.g. filename 9ff as "0x9ff"),
 			# bash will convert this to decimal (e.g. 2560) before storing.
 
 
@@ -43,7 +43,7 @@ if [ ! -e $WORKSPACE ]
 
 ####	  1. List All Bands in Hexadecimal Order      ####
 
-found_count=0;
+found_count=0
 for ((i=0; i<=$FINAL_BAND; i+=1)); do		    # Counting up to (name of last band, as a decimal)
 
 	k=$(printf "%x\n" $i);			    # "Print i into k" in hexadecimal form.
@@ -59,15 +59,15 @@ for ((i=0; i<=$FINAL_BAND; i+=1)); do		    # Counting up to (name of last band, 
 	fi
 done
 
-echo "$found_count bands found in total.";
+echo "$found_count bands found in total."
 
 
 
 #### 	  2. Split List Into Queues with $files_per_archive Lines (Files)  Each	     ####
 
-echo "… Creating archive queues …";						# Files in workspace:
-split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue_;	#     queue_[aaa…zzz]
-echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";			
+echo "… Creating archive queues …"						# Files in workspace:
+split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue_	#     queue_[aaa…zzz]
+echo "$(ls $WORKSPACE/queues | wc -l) queue files created."			
 
 
 
@@ -79,7 +79,7 @@ echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";
 ##	TO-DO: !! Allow user-specified archive location.				      ##
 ##		  - Important; image's parent drive might have insufficient free space	      ##
 
-suffix=1;
+suffix=1
 for queue in $WORKSPACE/queues/*; do
 	echo "… Creating archive_$suffix …";			    # File names: archive_[1…2…3…]
 	tar -cvf ../../archive_$suffix  --files-from=$queue;	    # placed outside sparse bundle.
