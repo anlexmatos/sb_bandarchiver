@@ -28,7 +28,7 @@ FINAL_BAND=2560;
 
 
 
-####		Create list of all existent bands, in hexadecimal order		####
+####	Create list of all existent bands, in hexadecimal order    ####
 
 found_count=0;
 for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Count from zero to (name of last band, as a decimal)
