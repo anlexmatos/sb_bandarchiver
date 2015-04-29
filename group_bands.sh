@@ -56,7 +56,7 @@ echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";
 
 ####	Pass each queue to tar for archiving	####
 ####	Archives are named "archive[1…2…3]"	####
-####	Archives are placed outside the bundle	####
+####	Archives are placed outside disk image	####
 ##	TO-DO: user provided output directory	  ##
 ##	TO-DO: halt if "queue-only mode"	  ##
 
