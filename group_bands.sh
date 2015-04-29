@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# This script is designed to facilitate uploading a Sparse Bundle disk image to Google Drive.
-# Sparse Bundles are made up of 8MiB segments called bands. Each band is numbered in hexadecimal.
-# The script will group bands into archives of configurable size (default: 10 GiB) in order to
-# make drag-and-drop uploading feasible. The archives are placed in the grandparent directory:
-# that is, outside of the sparse bundle.
+# This script is designed to facilitate uploading a Sparse Bundle disk image to Google Drive (or any
+# browser-based interface for cloud storage) from an external drive, when the boot partition is too
+# small to cache the entire image while uploading.
+# 
+# Sparse Bundles are made up of 8MiB segments called bands. Each band is numbered in hexadecimal. The
+# script will group these bands into archives of configurable size (default: 10 GiB) in order to make
+# drag-and-drop uploading feasible. The archives are placed in the grandparent directory (i.e. outside
+# of the sparse bundle).
 
 ########	BEGIN INITIALIZATION       ########
 											
