@@ -13,4 +13,4 @@ Then run the group_bands shell script. Archives will be placed outside the spars
 
 Ex:  
     $   cd /path/to/image.sparsebundle/bands  
-    $   ~/group_bands.sh
+    $   /path/to/group_bands.sh
