@@ -1,7 +1,7 @@
 # sb_bandarchiver
 Sparse Bundle Band Archiver - Group band files into archives of configurable size
 
-I created this in order to upload a large (>100gb) sparse bundle disk image to Google Drive from an external hard drive while dealing with minimal free space on the boot drive. Archiving the 8MB bands into ~10gb chunks allows simple partial uploads to Google Drive that do not attempt to devour your drive space with an enormous upload cache…
+I created this in order to upload a large (>100gb) sparse bundle disk image to Google Drive from an external hard drive while dealing with minimal free space on the boot drive. Archiving the 8MB bands into large but manageable chunks allows simple partial uploads to Google Drive that do not attempt to devour your drive space with an enormous upload cache…
 
 Currently all options are hardcoded and no command line arguments are read.
 
