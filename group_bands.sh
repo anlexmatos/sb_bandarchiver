@@ -22,8 +22,8 @@ if [ ! -e $WORKSPACE ]
 ###	TO-DO: User specified band directory (currently PWD)	 ###
 ###	TO-DO: Find final band automatically	 		 ###
 
-FINAL_BAND=0x9ff;	# Though this value is provided in hex (corresponding to file 9ff)
-			# bash will convert this to decimal (2560) before storing.
+FINAL_BAND=0x9ff;	# Though this value is provided in hex (e.g. corresponding to file '9ff'),
+			# bash will convert this to decimal (e.g. 2560) before storing.
 
 
 ########	END INITIALIZATION	  ########
@@ -55,9 +55,9 @@ echo "$found_count bands found in total.";
 
 ####	 2. Split List into Lists, with $files_per_archive Lines Each	  ####
          							          
-echo "… Creating archive queues …";						# File names:
-split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue;	#   queue[aaa…zzz]
-echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";			# in workspace dir
+echo "… Creating archive queues …";						# Files in workspace:
+split -a 3 -l $files_per_archive $WORKSPACE/counted $WORKSPACE/queues/queue;	#      queue[aaa…zzz]
+echo "$(ls $WORKSPACE/queues | wc -l) queue files created.";			
 
 
 
