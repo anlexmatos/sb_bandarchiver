@@ -31,8 +31,14 @@ FINAL_BAND=0x9ff;
 ####	Create list of all existent bands, in hexadecimal order    ####
 
 found_count=0;
-for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Count from zero to (name of last band, as a decimal)
-	k=$(printf "%x\n" $i);			# Convert i to hexadecimal, store in k
+for ((i=0; i<=$FINAL_BAND; i+=1)); do		# Counting up to (name of last band), a hex number
+
+	k=$(printf "%x\n" $i);			# "Print i into k" in hexadecimal form.
+						# Essentially: Decimal Integer -> Hex String
+						# This is necessary because bash always stores
+						# and operates on numbers in decimal, even when 
+						# they are specified in hexadecimal,
+
 	if [ -e $k ]				# Check if the hex in k corresponds to a band
 	then
 		echo $k >> $WORKSPACE/counted	# If so, add to the file list: 'counted'
