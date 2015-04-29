@@ -1,7 +1,9 @@
 # sb_bandarchiver
-Sparse Bundle Band Archiver - Group band files into archives of configurable size
+Sparse Bundle Band Archiver - Bash shell script to group band files into archives of configurable size
 
-I created this in order to upload a large (>100gb) sparse bundle disk image to Google Drive from an external hard drive while dealing with minimal free space on the boot drive. Archiving the 8MB bands into large but manageable chunks allows simple partial uploads to Google Drive that do not attempt to devour your drive space with an enormous upload cache…
+This script is designed to facilitate uploading a Sparse Bundle disk image to Google Drive (or any browser-based interface for cloud storage) from an external drive, when the boot partition is too small to cache the entire image while uploading.
+
+Sparse Bundles are made up of 8MiB segments called bands. Each band is numbered in hexadecimal. The script will group these bands into archives of configurable size (default: 10 GiB) in order to make drag-and-drop uploading of cacheable segments feasible. The archives are placed in the grandparent directory (i.e. outside of the sparse bundle).
 
 Currently all options are hardcoded and no command line arguments are read.
 
