@@ -6,8 +6,8 @@
 # 
 # Sparse Bundles are made up of 8MiB segments called bands. Each band is numbered in hexadecimal. The
 # script will group these bands into archives of configurable size (default: 10 GiB) in order to make
-# drag-and-drop uploading feasible. The archives are placed in the grandparent directory (i.e. outside
-# of the sparse bundle).
+# drag-and-drop uploading of cacheable segments feasible. The archives are placed in the grandparent
+# directory (i.e. outside of the sparse bundle).
 
 ########	BEGIN INITIALIZATION       ########
 											
